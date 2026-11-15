@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,7 +25,7 @@
       --shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.12);
       --radius: 16px;
       --radius-sm: 10px;
-      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, "Vazirmatn", Tahoma, "PingFang SC", "Microsoft YaHei", Helvetica, Arial, sans-serif;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
@@ -68,7 +68,7 @@
 
     .container {
       width: 100%;
-      max-width: 760px;
+      max-width: 780px;
     }
 
     header {
@@ -77,12 +77,15 @@
       justify-content: space-between;
       gap: 12px;
       margin-bottom: 20px;
+      flex-wrap: wrap;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
+      min-width: 0;
+      flex: 1 1 240px;
     }
 
     .brand-icon {
@@ -108,6 +111,33 @@
     .brand-text p {
       font-size: 0.85rem;
       color: var(--text-muted);
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .lang-select {
+      height: 40px;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0 10px;
+      font-family: var(--font);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .lang-select:hover,
+    .lang-select:focus {
+      border-color: var(--primary);
     }
 
     .icon-btn {
@@ -196,13 +226,15 @@
       transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
-    input[type="text"] {
-      font-family: var(--font);
-    }
-
     textarea {
+      direction: ltr;
+      text-align: left;
       min-height: 132px;
       resize: vertical;
+    }
+
+    input[type="text"] {
+      font-family: var(--font);
     }
 
     textarea:focus,
@@ -231,6 +263,7 @@
       gap: 8px;
       padding: 12px 18px;
       border-radius: var(--radius-sm);
+      font-family: var(--font);
       font-size: 0.92rem;
       font-weight: 600;
       border: 1px solid transparent;
@@ -303,6 +336,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
+      flex-wrap: wrap;
     }
 
     .output-group {
@@ -329,6 +363,8 @@
     }
 
     .code-box {
+      direction: ltr;
+      text-align: left;
       font-family: var(--mono);
       font-size: 0.8rem;
       word-break: break-all;
@@ -342,17 +378,35 @@
       margin-bottom: 10px;
     }
 
-    .qr-grid {
+    .qr-dual-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 16px;
-      align-items: center;
+      gap: 14px;
+      margin-top: 10px;
     }
 
-    @media (min-width: 560px) {
-      .qr-grid {
-        grid-template-columns: auto 1fr;
+    @media (min-width: 600px) {
+      .qr-dual-grid {
+        grid-template-columns: 1fr 1fr;
       }
+    }
+
+    .qr-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+
+    .qr-card-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
     }
 
     .qr-box {
@@ -363,9 +417,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 184px;
-      min-height: 184px;
-      margin: 0 auto;
+      width: 192px;
+      height: 192px;
     }
 
     .qr-box canvas,
@@ -375,9 +428,22 @@
       height: auto;
     }
 
+    .qr-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .qr-actions .btn {
+      flex: 1 1 70px;
+      padding: 8px 10px;
+      font-size: 0.8rem;
+    }
+
     .notice {
       font-size: 0.8rem;
-      color: var(--text-muted);
       padding: 10px 12px;
       border-radius: 8px;
       background: var(--warning-soft);
@@ -406,30 +472,10 @@
       text-align: center;
     }
 
-    .landing-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 16px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, #4f46e5, #06b6d4);
-      color: #fff;
-      display: grid;
-      place-items: center;
-      font-size: 28px;
-      font-weight: 700;
-      box-shadow: 0 10px 24px rgba(79, 70, 229, 0.35);
-    }
-
-    .landing-card h2 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
     .landing-subtitle {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--text-muted);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .profile-pill {
@@ -442,11 +488,65 @@
       border: 1px solid var(--border);
       font-size: 0.85rem;
       font-weight: 600;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       max-width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+
+    /* Round Power Button */
+    .power-btn-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .power-btn {
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #6366f1, #4338ca);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border: 4px solid rgba(99, 102, 241, 0.25);
+      box-shadow:
+        0 14px 32px -6px rgba(79, 70, 229, 0.5),
+        0 0 0 10px var(--primary-soft);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .power-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow:
+        0 18px 36px -6px rgba(79, 70, 229, 0.6),
+        0 0 0 14px var(--primary-soft);
+    }
+
+    .power-btn:active {
+      transform: scale(0.96);
+    }
+
+    .power-btn svg {
+      width: 56px;
+      height: 56px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .power-btn-label {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
     }
 
     .landing-actions {
@@ -475,6 +575,7 @@
       background: none;
       border: none;
       color: var(--primary);
+      font-family: var(--font);
       font-weight: 600;
       font-size: inherit;
       cursor: pointer;
@@ -493,21 +594,28 @@
       <div class="brand">
         <div class="brand-icon" aria-hidden="true">H</div>
         <div class="brand-text">
-          <h1>Hiddify Deep Link Resolver</h1>
-          <p>Convert subscriptions, proxy URIs &amp; configs into 1-click Hiddify links</p>
+          <h1 data-i18n="appTitle">Hiddify Deep Link Resolver</h1>
+          <p data-i18n="appSubtitle">Convert subscriptions, proxy URIs &amp; configs into 1-click Hiddify links</p>
         </div>
       </div>
-      <button id="themeToggle" class="icon-btn" type="button" aria-label="Toggle dark or light theme" title="Toggle theme">
-        <span id="themeIcon">🌙</span>
-      </button>
+      <div class="header-controls">
+        <select id="langSelect" class="lang-select" aria-label="Language">
+          <option value="en">English</option>
+          <option value="fa">فارسی (ایران)</option>
+          <option value="tr">Türkçe</option>
+          <option value="zh">中文</option>
+          <option value="ru">Русский</option>
+        </select>
+        <button id="themeToggle" class="icon-btn" type="button" aria-label="Toggle dark or light theme" title="Toggle theme">
+          <span id="themeIcon">🌙</span>
+        </button>
+      </div>
     </header>
 
     <!-- Landing / Auto-Redirect Mode -->
     <main id="landingView" class="landing-wrap" aria-live="polite">
       <div class="landing-card">
-        <div class="landing-icon" aria-hidden="true">H</div>
-        <h2>Configure Your VPN</h2>
-        <p class="landing-subtitle">
+        <p id="landingSubtitle" class="landing-subtitle" data-i18n="landingSubtitleDefault">
           Opening Hiddify app automatically. If it doesn't prompt you within a moment, tap below.
         </p>
 
@@ -516,25 +624,29 @@
           <span id="landingProfileName">Hiddify Profile</span>
         </div>
 
+        <div class="power-btn-wrap">
+          <a id="landingOpenHiddifyBtn" href="#" class="power-btn" aria-label="Open in Hiddify App">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2v10"></path>
+              <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+            </svg>
+          </a>
+          <span id="landingPowerLabel" class="power-btn-label" data-i18n="openInHiddifyBtn">Open in Hiddify App</span>
+        </div>
+
         <div class="landing-actions">
-          <a id="landingOpenHiddifyBtn" href="#" class="btn btn-primary">
-            Open in Hiddify App
-          </a>
-          <a id="landingIntentBtn" href="#" class="btn btn-secondary">
-            Open via Android Intent
-          </a>
-          <button id="landingCopyBtn" type="button" class="btn btn-secondary">
+          <button id="landingCopyBtn" type="button" class="btn btn-secondary" data-i18n="copyConfigBtn">
             Copy Subscription / Config Link
           </button>
         </div>
 
-        <div id="landingAndroidNotice" class="notice hidden" style="text-align: left; margin-top: 14px;"></div>
+        <div id="landingAndroidNotice" class="notice hidden" style="text-align: start; margin-top: 14px;"></div>
 
         <div id="landingError" class="error-msg"></div>
 
         <div class="landing-footer">
-          <span>Need a new link?</span>
-          <button id="switchToGeneratorBtn" type="button" class="link-btn">Open Link Generator</button>
+          <span data-i18n="needNewLink">Need a new link?</span>
+          <button id="switchToGeneratorBtn" type="button" class="link-btn" data-i18n="openLinkGenerator">Open Link Generator</button>
         </div>
       </div>
     </main>
@@ -544,7 +656,7 @@
       <section class="card">
         <div class="field">
           <div class="field-header">
-            <label for="configInput">Subscription URL, Proxy URI(s), or JSON / YAML Config</label>
+            <label for="configInput" data-i18n="inputLabel">Subscription URL, Proxy URI(s), or JSON / YAML Config</label>
             <span id="detectedTypeBadge" class="badge">Waiting for input</span>
           </div>
           <textarea
@@ -556,12 +668,12 @@
 • Multi-line proxy URIs
 • Raw Sing-box JSON or Clash YAML configuration"
           ></textarea>
-          <p class="hint">All encoding happens 100% locally in your browser. Nothing is sent to any server.</p>
+          <p class="hint" data-i18n="localPrivacyHint">All encoding happens 100% locally in your browser. Nothing is sent to any server.</p>
         </div>
 
         <div class="field">
           <div class="field-header">
-            <label for="profileNameInput">Profile Name (Optional)</label>
+            <label for="profileNameInput" data-i18n="profileNameLabel">Profile Name (Optional)</label>
           </div>
           <input
             id="profileNameInput"
@@ -572,8 +684,8 @@
         </div>
 
         <div class="actions-row">
-          <button id="generateBtn" type="button" class="btn btn-primary">Generate Link</button>
-          <button id="clearBtn" type="button" class="btn btn-secondary">Clear</button>
+          <button id="generateBtn" type="button" class="btn btn-primary" data-i18n="generateBtn">Generate Link</button>
+          <button id="clearBtn" type="button" class="btn btn-secondary" data-i18n="clearBtn">Clear</button>
         </div>
 
         <div id="inputError" class="error-msg" role="alert"></div>
@@ -581,65 +693,57 @@
 
       <section id="outputSection" class="card output-section" aria-live="polite">
         <div class="section-title">
-          <span>Generated Deep Links &amp; QR</span>
+          <span data-i18n="outputSectionTitle">Generated Links &amp; QR Codes</span>
           <span id="outputModeBadge" class="badge success">Ready</span>
-        </div>
-
-        <!-- Primary hiddify:// link -->
-        <div class="output-group">
-          <div class="output-label">
-            <span>Direct Hiddify Deep Link (iOS &amp; Android)</span>
-          </div>
-          <div id="hiddifyUriBox" class="code-box"></div>
-          <div class="actions-row">
-            <a id="testHiddifyBtn" href="#" class="btn btn-primary btn-sm">Open in Hiddify</a>
-            <button id="copyHiddifyBtn" type="button" class="btn btn-secondary btn-sm">Copy hiddify:// Link</button>
-          </div>
-        </div>
-
-        <!-- Android Intent fallback -->
-        <div class="output-group">
-          <div class="output-label">
-            <span>Android Intent Fallback (Chrome / Android Browsers)</span>
-          </div>
-          <div id="intentUriBox" class="code-box"></div>
-          <div class="actions-row">
-            <a id="testIntentBtn" href="#" class="btn btn-secondary btn-sm">Test Android Intent</a>
-            <button id="copyIntentBtn" type="button" class="btn btn-secondary btn-sm">Copy Intent URI</button>
-          </div>
         </div>
 
         <!-- Shareable HTTPS wrapper URL -->
         <div class="output-group">
           <div class="output-label">
-            <span>Shareable Wrapper URL (for Telegram, WhatsApp, etc.)</span>
+            <span data-i18n="wrapperUrlLabel">Shareable Wrapper URL (for Telegram, WhatsApp, etc.)</span>
           </div>
           <div id="wrapperUrlBox" class="code-box"></div>
           <div class="actions-row">
-            <button id="copyWrapperBtn" type="button" class="btn btn-secondary btn-sm">Copy Shareable URL</button>
-            <a id="previewWrapperBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Preview Landing Modal</a>
+            <button id="copyWrapperBtn" type="button" class="btn btn-secondary btn-sm" data-i18n="copyWrapperBtn">Copy Shareable URL</button>
+            <a id="previewWrapperBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="previewWrapperBtn">Preview Landing Modal</a>
           </div>
-          <div id="fileProtocolNotice" class="notice hidden">
+          <div id="fileProtocolNotice" class="notice hidden" data-i18n-html="fileProtocolNotice">
             You are viewing this file locally via <code>file://</code>. Host <code>index.html</code> on any static host (e.g., GitHub Pages, Cloudflare Pages, Vercel) to share clickable <code>https://</code> links in Telegram.
           </div>
         </div>
 
-        <!-- QR Code -->
+        <!-- Dual QR Codes -->
         <div class="output-group">
           <div class="output-label">
-            <span>Scan with Hiddify Mobile App</span>
+            <span data-i18n="qrSectionLabel">Scan with Hiddify Mobile App</span>
           </div>
-          <div class="qr-grid">
-            <div id="qrcodeContainer" class="qr-box" aria-label="QR Code for Hiddify Deep Link"></div>
-            <div>
-              <p class="hint" style="margin-top: 0; margin-bottom: 10px;">
-                Open Hiddify &rarr; tap <strong>+</strong> &rarr; <strong>Scan QR Code</strong> to import this profile directly.
-              </p>
-              <div class="actions-row">
-                <button id="qrModeDeepBtn" type="button" class="btn btn-primary btn-sm">QR: Deep Link</button>
-                <button id="qrModeWrapperBtn" type="button" class="btn btn-secondary btn-sm">QR: Wrapper URL</button>
+          <p class="hint" style="margin-top: 0; margin-bottom: 10px;" data-i18n-html="qrScanHint">
+            Open Hiddify &rarr; tap <strong>+</strong> &rarr; <strong>Scan QR Code</strong> to import this profile directly.
+          </p>
+
+          <div class="qr-dual-grid">
+            <!-- QR 1: Deep Link -->
+            <div class="qr-card">
+              <div class="qr-card-title" data-i18n="qrDeepTitle">QR: Deep Link</div>
+              <div id="qrcodeDeepContainer" class="qr-box" aria-label="QR: Deep Link"></div>
+              <div class="qr-actions">
+                <button id="qrDeepCopyBtn" type="button" class="btn btn-secondary btn-sm" data-i18n="qrCopyBtn">Copy</button>
+                <button id="qrDeepSendBtn" type="button" class="btn btn-secondary btn-sm" data-i18n="qrSendBtn">Send</button>
+                <button id="qrDeepSaveBtn" type="button" class="btn btn-secondary btn-sm" data-i18n="qrSaveBtn">Save</button>
               </div>
-              <p id="qrWarning" class="hint hidden"></p>
+              <p id="qrDeepWarning" class="hint hidden"></p>
+            </div>
+
+            <!-- QR 2: Wrapper URL -->
+            <div class="qr-card">
+              <div class="qr-card-title" data-i18n="qrWrapperTitle">QR: Wrapper URL</div>
+              <div id="qrcodeWrapperContainer" class="qr-box" aria-label="QR: Wrapper URL"></div>
+              <div class="qr-actions">
+                <button id="qrWrapperCopyBtn" type="button" class="btn btn-secondary btn-sm" data-i18n="qrCopyBtn">Copy</button>
+                <button id="qrWrapperSendBtn" type="button" class="btn btn-secondary btn-sm" data-i18n="qrSendBtn">Send</button>
+                <button id="qrWrapperSaveBtn" type="button" class="btn btn-secondary btn-sm" data-i18n="qrSaveBtn">Save</button>
+              </div>
+              <p id="qrWrapperWarning" class="hint hidden"></p>
             </div>
           </div>
         </div>
@@ -664,9 +768,328 @@
         "ssh://"
       ];
 
+      const I18N = {
+        en: {
+          pageTitle: "Hiddify Deep Link Resolver & Generator",
+          appTitle: "Hiddify Deep Link Resolver",
+          appSubtitle: "Convert subscriptions, proxy URIs & configs into 1-click Hiddify links",
+          inputLabel: "Subscription URL, Proxy URI(s), or JSON / YAML Config",
+          inputPlaceholder:
+            "Paste one of:\n• https://example.com/sub/token\n• vless://... / vmess://... / trojan://... / ss://... / hy2://... / tuic://...\n• Multi-line proxy URIs\n• Raw Sing-box JSON or Clash YAML configuration",
+          localPrivacyHint: "All encoding happens 100% locally in your browser. Nothing is sent to any server.",
+          profileNameLabel: "Profile Name (Optional)",
+          profileNamePlaceholder: "e.g., My Fast Server",
+          generateBtn: "Generate Link",
+          clearBtn: "Clear",
+          emptyInputError: "Please enter a subscription URL, proxy URI, or configuration text.",
+          outputSectionTitle: "Generated Links & QR Codes",
+          wrapperUrlLabel: "Shareable Wrapper URL (for Telegram, WhatsApp, etc.)",
+          copyWrapperBtn: "Copy Shareable URL",
+          previewWrapperBtn: "Preview Landing Modal",
+          fileProtocolNotice:
+            "You are viewing this file locally via <code>file://</code>. Host <code>index.html</code> on any static host (e.g., GitHub Pages, Cloudflare Pages, Vercel) to share clickable <code>https://</code> links in Telegram.",
+          qrSectionLabel: "Scan with Hiddify Mobile App",
+          qrScanHint: "Open Hiddify &rarr; tap <strong>+</strong> &rarr; <strong>Scan QR Code</strong> to import this profile directly.",
+          qrDeepTitle: "QR: Deep Link",
+          qrWrapperTitle: "QR: Wrapper URL",
+          qrCopyBtn: "Copy",
+          qrSendBtn: "Send",
+          qrSaveBtn: "Save",
+          qrOffline: "QR library unavailable offline.",
+          qrTooLarge: "Payload too large for QR code. Use the Wrapper URL or Copy button instead.",
+          qrTooLargeWarn: "Payload length ({len} chars) exceeds standard QR capacity.",
+          qrRenderError: "Unable to render QR for this payload.",
+          copied: "Copied!",
+          copyFailed: "Copy failed",
+          saved: "Saved!",
+          sent: "Sent!",
+          shareFailed: "Share failed",
+          shareDeepTitle: "Hiddify Deep Link QR",
+          shareWrapperTitle: "Hiddify Wrapper URL QR",
+          typeEmpty: "Waiting for input",
+          typeUrl: "Subscription URL",
+          typeHiddify: "Hiddify Deep Link",
+          typeProxyOne: "Proxy URI",
+          typeProxyMany: "Proxy URIs ({n} lines)",
+          typeJson: "Sing-box / JSON Config",
+          typeJsonInvalid: "JSON Config (check syntax)",
+          typeYaml: "Clash / YAML Config",
+          typeText: "Raw Config Text",
+          typeImportedUri: "Imported URI",
+          typeProfile: "Profile",
+          defaultProfileName: "Hiddify VPN Profile",
+          landingSubtitleDefault: "Opening Hiddify app automatically. If it doesn't prompt you within a moment, tap below.",
+          landingSubtitleAndroid: "Tap the power button below to import this profile into Hiddify on Android.",
+          openInHiddifyBtn: "Open in Hiddify App",
+          copyConfigBtn: "Copy Subscription / Config Link",
+          androidInAppNotice:
+            "Opened in an in-app browser? If the button doesn't launch Hiddify, tap the menu (<strong>&vellip;</strong>) &rarr; <strong>Open in Chrome</strong> (or your browser), or copy the link below and paste it inside Hiddify (<strong>+</strong> &rarr; <strong>Add from Clipboard</strong>).",
+          androidBrowserNotice:
+            "If Hiddify does not open when tapped, tap <strong>Copy Subscription / Config Link</strong> below and paste it inside Hiddify (<strong>+</strong> &rarr; <strong>Add from Clipboard</strong>).",
+          invalidBase64Error: "Invalid Base64 configuration payload in URL.",
+          needNewLink: "Need a new link?",
+          openLinkGenerator: "Open Link Generator",
+          readyBadge: "Ready",
+          toggleThemeAria: "Toggle dark or light theme"
+        },
+        fa: {
+          pageTitle: "تبدیل‌کننده و سازنده لینک عمیق هیدیفای",
+          appTitle: "تبدیل‌کننده لینک هیدیفای",
+          appSubtitle: "تبدیل اشتراک، لینک‌های پروکسی و کانفیگ به لینک تک‌کلیکی Hiddify",
+          inputLabel: "لینک اشتراک (Subscription)، لینک پروکسی یا کانفیگ JSON / YAML",
+          inputPlaceholder:
+            "یکی از موارد زیر را وارد کنید:\n• https://example.com/sub/token\n• vless://... / vmess://... / trojan://... / ss://... / hy2://... / tuic://...\n• چند لینک پروکسی در چند خط\n• متن خام کانفیگ Sing-box JSON یا Clash YAML",
+          localPrivacyHint: "تمام پردازش ۱۰۰٪ در مرورگر شما انجام می‌شود و هیچ داده‌ای به سرور ارسال نمی‌شود.",
+          profileNameLabel: "نام پروفایل (اختیاری)",
+          profileNamePlaceholder: "مثال: سرور پرسرعت من",
+          generateBtn: "ساخت لینک",
+          clearBtn: "پاک کردن",
+          emptyInputError: "لطفاً یک لینک اشتراک، لینک پروکسی یا متن کانفیگ وارد کنید.",
+          outputSectionTitle: "لینک‌ها و کدهای QR ساخته‌شده",
+          wrapperUrlLabel: "لینک قابل اشتراک‌گذاری (مناسب تلگرام، واتساپ و ...)",
+          copyWrapperBtn: "کپی لینک اشتراک‌گذاری",
+          previewWrapperBtn: "پیش‌نمایش صفحه ورود",
+          fileProtocolNotice:
+            "در حال باز کردن فایل به‌صورت محلی (<code>file://</code>) هستید. برای ساخت لینک‌های <code>https://</code> قابل کلیک در تلگرام، فایل <code>index.html</code> را روی یک هاست استاتیک (مانند GitHub Pages یا Cloudflare Pages) قرار دهید.",
+          qrSectionLabel: "اسکن با اپلیکیشن موبایل Hiddify",
+          qrScanHint: "برنامه Hiddify را باز کنید &larr; روی <strong>+</strong> بزنید &larr; <strong>اسکن کد QR</strong> را انتخاب کنید.",
+          qrDeepTitle: "QR: لینک مستقیم (Deep Link)",
+          qrWrapperTitle: "QR: لینک اشتراک‌گذاری (Wrapper)",
+          qrCopyBtn: "کپی",
+          qrSendBtn: "ارسال",
+          qrSaveBtn: "ذخیره",
+          qrOffline: "کتابخانه QR در حالت آفلاین در دسترس نیست.",
+          qrTooLarge: "حجم داده برای کد QR بیش از حد زیاد است. از لینک اشتراک‌گذاری یا دکمه کپی استفاده کنید.",
+          qrTooLargeWarn: "طول داده ({len} کاراکتر) از ظرفیت استاندارد QR بیشتر است.",
+          qrRenderError: "امکان ساخت کد QR برای این داده وجود ندارد.",
+          copied: "کپی شد!",
+          copyFailed: "کپی ناموفق بود",
+          saved: "ذخیره شد!",
+          sent: "ارسال شد!",
+          shareFailed: "اشتراک‌گذاری ناموفق",
+          shareDeepTitle: "کد QR لینک مستقیم Hiddify",
+          shareWrapperTitle: "کد QR لینک اشتراک‌گذاری Hiddify",
+          typeEmpty: "در انتظار ورودی",
+          typeUrl: "لینک اشتراک (Subscription)",
+          typeHiddify: "لینک عمیق Hiddify",
+          typeProxyOne: "لینک پروکسی",
+          typeProxyMany: "لینک‌های پروکسی ({n} خط)",
+          typeJson: "کانفیگ Sing-box / JSON",
+          typeJsonInvalid: "کانفیگ JSON (نحو را بررسی کنید)",
+          typeYaml: "کانفیگ Clash / YAML",
+          typeText: "متن خام کانفیگ",
+          typeImportedUri: "لینک واردشده",
+          typeProfile: "پروفایل",
+          defaultProfileName: "پروفایل VPN هیدیفای",
+          landingSubtitleDefault: "در حال باز کردن خودکار برنامه Hiddify. اگر باز نشد، دکمه زیر را لمس کنید.",
+          landingSubtitleAndroid: "برای افزودن این پروفایل به Hiddify در اندروید، دکمه پاور زیر را لمس کنید.",
+          openInHiddifyBtn: "باز کردن در برنامه Hiddify",
+          copyConfigBtn: "کپی لینک اشتراک / کانفیگ",
+          androidInAppNotice:
+            "در مرورگر داخلی برنامه (مثل تلگرام) باز شده است؟ اگر برنامه باز نشد، منوی (<strong>&vellip;</strong>) &larr; <strong>Open in Chrome</strong> (باز کردن در مرورگر) را بزنید، یا لینک را کپی کرده و در Hiddify (<strong>+</strong> &larr; <strong>افزودن از کلیپ‌بورد</strong>) وارد کنید.",
+          androidBrowserNotice:
+            "اگر Hiddify باز نشد، روی <strong>کپی لینک اشتراک / کانفیگ</strong> بزنید و در برنامه Hiddify (<strong>+</strong> &larr; <strong>افزودن از کلیپ‌بورد</strong>) جای‌گذاری کنید.",
+          invalidBase64Error: "داده Base64 کانفیگ در آدرس نامعتبر است.",
+          needNewLink: "لینک جدید می‌خواهید؟",
+          openLinkGenerator: "باز کردن سازنده لینک",
+          readyBadge: "آماده",
+          toggleThemeAria: "تغییر تم تیره یا روشن"
+        },
+        tr: {
+          pageTitle: "Hiddify Derin Bağlantı Çözücü ve Oluşturucu",
+          appTitle: "Hiddify Derin Bağlantı Çözücü",
+          appSubtitle: "Abonelikleri, proxy URI'lerini ve yapılandırmaları tek tıkla Hiddify bağlantılarına dönüştürün",
+          inputLabel: "Abonelik URL'si, Proxy URI(leri) veya JSON / YAML Yapılandırması",
+          inputPlaceholder:
+            "Bunlardan birini yapıştırın:\n• https://example.com/sub/token\n• vless://... / vmess://... / trojan://... / ss://... / hy2://... / tuic://...\n• Çok satırlı proxy URI'leri\n• Ham Sing-box JSON veya Clash YAML yapılandırması",
+          localPrivacyHint: "Tüm kodlama %100 tarayıcınızda yerel olarak yapılır. Hiçbir sunucuya veri gönderilmez.",
+          profileNameLabel: "Profil Adı (İsteğe bağlı)",
+          profileNamePlaceholder: "ör. Hızlı Sunucum",
+          generateBtn: "Bağlantı Oluştur",
+          clearBtn: "Temizle",
+          emptyInputError: "Lütfen bir abonelik URL'si, proxy URI'si veya yapılandırma metni girin.",
+          outputSectionTitle: "Oluşturulan Bağlantılar ve QR Kodları",
+          wrapperUrlLabel: "Paylaşılabilir Sarmalayıcı URL (Telegram, WhatsApp vb. için)",
+          copyWrapperBtn: "Paylaşılabilir URL'yi Kopyala",
+          previewWrapperBtn: "Açılış Ekranını Önizle",
+          fileProtocolNotice:
+            "Bu dosyayı yerel olarak <code>file://</code> üzerinden görüntülüyorsunuz. Telegram'da tıklanabilir <code>https://</code> bağlantıları paylaşmak için <code>index.html</code> dosyasını statik bir sunucuda (GitHub Pages, Cloudflare Pages vb.) barındırın.",
+          qrSectionLabel: "Hiddify Mobil Uygulamasıyla Tarayın",
+          qrScanHint: "Hiddify'ı açın &rarr; <strong>+</strong> simgesine dokunun &rarr; bu profili içe aktarmak için <strong>QR Kod Tara</strong> seçeneğini seçin.",
+          qrDeepTitle: "QR: Derin Bağlantı",
+          qrWrapperTitle: "QR: Sarmalayıcı URL",
+          qrCopyBtn: "Kopyala",
+          qrSendBtn: "Gönder",
+          qrSaveBtn: "Kaydet",
+          qrOffline: "QR kütüphanesi çevrimdışı kullanılamıyor.",
+          qrTooLarge: "Veri QR kodu için çok büyük. Bunun yerine Sarmalayıcı URL'yi veya Kopyala düğmesini kullanın.",
+          qrTooLargeWarn: "Veri uzunluğu ({len} karakter) standart QR kapasitesini aşıyor.",
+          qrRenderError: "Bu veri için QR kodu oluşturulamıyor.",
+          copied: "Kopyalandı!",
+          copyFailed: "Kopyalama başarısız",
+          saved: "Kaydedildi!",
+          sent: "Gönderildi!",
+          shareFailed: "Paylaşım başarısız",
+          shareDeepTitle: "Hiddify Derin Bağlantı QR",
+          shareWrapperTitle: "Hiddify Sarmalayıcı URL QR",
+          typeEmpty: "Giriş bekleniyor",
+          typeUrl: "Abonelik URL'si",
+          typeHiddify: "Hiddify Derin Bağlantısı",
+          typeProxyOne: "Proxy URI",
+          typeProxyMany: "Proxy URI'leri ({n} satır)",
+          typeJson: "Sing-box / JSON Yapılandırması",
+          typeJsonInvalid: "JSON Yapılandırması (sözdizimini kontrol edin)",
+          typeYaml: "Clash / YAML Yapılandırması",
+          typeText: "Ham Yapılandırma Metni",
+          typeImportedUri: "İçe Aktarılan URI",
+          typeProfile: "Profil",
+          defaultProfileName: "Hiddify VPN Profili",
+          landingSubtitleDefault: "Hiddify uygulaması otomatik açılıyor. Kısa süre içinde açılmazsa aşağıya dokunun.",
+          landingSubtitleAndroid: "Bu profili Android'de Hiddify'a aktarmak için aşağıdaki güç düğmesine dokunun.",
+          openInHiddifyBtn: "Hiddify Uygulamasında Aç",
+          copyConfigBtn: "Abonelik / Yapılandırma Bağlantısını Kopyala",
+          androidInAppNotice:
+            "Uygulama içi tarayıcıda mı açıldı? Düğme Hiddify'ı başlatmıyorsa menüye (<strong>&vellip;</strong>) &rarr; <strong>Chrome'da Aç</strong> seçeneğine dokunun veya aşağıdaki bağlantıyı kopyalayıp Hiddify içinde (<strong>+</strong> &rarr; <strong>Panodan Ekle</strong>) yapıştırın.",
+          androidBrowserNotice:
+            "Dokunduğunuzda Hiddify açılmazsa aşağıdaki <strong>Abonelik / Yapılandırma Bağlantısını Kopyala</strong> düğmesine dokunun ve Hiddify içinde (<strong>+</strong> &rarr; <strong>Panodan Ekle</strong>) yapıştırın.",
+          invalidBase64Error: "URL'deki Base64 yapılandırma verisi geçersiz.",
+          needNewLink: "Yeni bir bağlantıya mı ihtiyacınız var?",
+          openLinkGenerator: "Bağlantı Oluşturucuyu Aç",
+          readyBadge: "Hazır",
+          toggleThemeAria: "Karanlık veya aydınlık temayı değiştir"
+        },
+        zh: {
+          pageTitle: "Hiddify 深层链接解析与生成器",
+          appTitle: "Hiddify 深层链接解析器",
+          appSubtitle: "将订阅地址、代理 URI 和配置文件转换为一键 Hiddify 导入链接",
+          inputLabel: "订阅 URL、代理 URI 或 JSON / YAML 配置",
+          inputPlaceholder:
+            "粘贴以下任一内容：\n• https://example.com/sub/token\n• vless://... / vmess://... / trojan://... / ss://... / hy2://... / tuic://...\n• 多行代理 URI\n• 原始 Sing-box JSON 或 Clash YAML 配置",
+          localPrivacyHint: "所有编码 100% 在您的浏览器本地完成，不会向任何服务器发送数据。",
+          profileNameLabel: "配置文件名称（可选）",
+          profileNamePlaceholder: "例如：我的高速节点",
+          generateBtn: "生成链接",
+          clearBtn: "清空",
+          emptyInputError: "请输入订阅 URL、代理 URI 或配置文本。",
+          outputSectionTitle: "已生成的链接与二维码",
+          wrapperUrlLabel: "可分享的包装链接（适用于 Telegram、WhatsApp 等）",
+          copyWrapperBtn: "复制分享链接",
+          previewWrapperBtn: "预览跳转页面",
+          fileProtocolNotice:
+            "您当前通过本地 <code>file://</code> 打开此页面。请将 <code>index.html</code> 部署到任意静态托管平台（如 GitHub Pages、Cloudflare Pages、Vercel），以便在 Telegram 中分享可点击的 <code>https://</code> 链接。",
+          qrSectionLabel: "使用 Hiddify 手机应用扫描",
+          qrScanHint: "打开 Hiddify &rarr; 点击 <strong>+</strong> &rarr; <strong>扫描二维码</strong> 即可直接导入此配置。",
+          qrDeepTitle: "二维码：深层链接",
+          qrWrapperTitle: "二维码：包装链接",
+          qrCopyBtn: "复制",
+          qrSendBtn: "发送",
+          qrSaveBtn: "保存",
+          qrOffline: "离线状态下二维码库不可用。",
+          qrTooLarge: "内容过大，无法生成二维码。请改用包装链接或复制按钮。",
+          qrTooLargeWarn: "内容长度（{len} 字符）超出标准二维码容量。",
+          qrRenderError: "无法为此内容生成二维码。",
+          copied: "已复制！",
+          copyFailed: "复制失败",
+          saved: "已保存！",
+          sent: "已发送！",
+          shareFailed: "分享失败",
+          shareDeepTitle: "Hiddify 深层链接二维码",
+          shareWrapperTitle: "Hiddify 包装链接二维码",
+          typeEmpty: "等待输入",
+          typeUrl: "订阅 URL",
+          typeHiddify: "Hiddify 深层链接",
+          typeProxyOne: "代理 URI",
+          typeProxyMany: "代理 URI（{n} 行）",
+          typeJson: "Sing-box / JSON 配置",
+          typeJsonInvalid: "JSON 配置（请检查语法）",
+          typeYaml: "Clash / YAML 配置",
+          typeText: "原始配置文本",
+          typeImportedUri: "导入的 URI",
+          typeProfile: "配置",
+          defaultProfileName: "Hiddify VPN 配置",
+          landingSubtitleDefault: "正在自动打开 Hiddify 应用。如果片刻后未弹出提示，请点击下方按钮。",
+          landingSubtitleAndroid: "点击下方电源按钮，在 Android 上将此配置导入 Hiddify。",
+          openInHiddifyBtn: "在 Hiddify 应用中打开",
+          copyConfigBtn: "复制订阅 / 配置链接",
+          androidInAppNotice:
+            "当前处于应用内浏览器？如果按钮无法拉起 Hiddify，请点击菜单 (<strong>&vellip;</strong>) &rarr; <strong>在 Chrome 中打开</strong>（或系统浏览器），或复制下方链接并在 Hiddify 中粘贴（<strong>+</strong> &rarr; <strong>从剪贴板添加</strong>）。",
+          androidBrowserNotice:
+            "如果点击后未打开 Hiddify，请点击下方 <strong>复制订阅 / 配置链接</strong>，并在 Hiddify 中粘贴（<strong>+</strong> &rarr; <strong>从剪贴板添加</strong>）。",
+          invalidBase64Error: "URL 中的 Base64 配置载荷无效。",
+          needNewLink: "需要生成新链接？",
+          openLinkGenerator: "打开链接生成器",
+          readyBadge: "就绪",
+          toggleThemeAria: "切换深色或浅色主题"
+        },
+        ru: {
+          pageTitle: "Генератор и резолвер диплинков Hiddify",
+          appTitle: "Резолвер диплинков Hiddify",
+          appSubtitle: "Конвертация подписок, прокси-URI и конфигов в ссылки Hiddify в 1 клик",
+          inputLabel: "URL подписки, прокси-URI или конфиг JSON / YAML",
+          inputPlaceholder:
+            "Вставьте один из вариантов:\n• https://example.com/sub/token\n• vless://... / vmess://... / trojan://... / ss://... / hy2://... / tuic://...\n• Несколько прокси-URI построчно\n• Сырой конфиг Sing-box JSON или Clash YAML",
+          localPrivacyHint: "Вся обработка происходит на 100% локально в вашем браузере. Данные никуда не отправляются.",
+          profileNameLabel: "Название профиля (необязательно)",
+          profileNamePlaceholder: "напр., Мой быстрый сервер",
+          generateBtn: "Создать ссылку",
+          clearBtn: "Очистить",
+          emptyInputError: "Пожалуйста, введите URL подписки, прокси-URI или текст конфигурации.",
+          outputSectionTitle: "Сгенерированные ссылки и QR-коды",
+          wrapperUrlLabel: "Общая ссылка-обёртка (для Telegram, WhatsApp и др.)",
+          copyWrapperBtn: "Копировать ссылку",
+          previewWrapperBtn: "Предпросмотр страницы",
+          fileProtocolNotice:
+            "Вы открыли файл локально через <code>file://</code>. Разместите <code>index.html</code> на статическом хостинге (GitHub Pages, Cloudflare Pages, Vercel), чтобы делиться кликабельными <code>https://</code> ссылками в Telegram.",
+          qrSectionLabel: "Сканируйте в мобильном приложении Hiddify",
+          qrScanHint: "Откройте Hiddify &rarr; нажмите <strong>+</strong> &rarr; <strong>Сканировать QR-код</strong> для импорта профиля.",
+          qrDeepTitle: "QR: Диплинк (Deep Link)",
+          qrWrapperTitle: "QR: Ссылка-обёртка",
+          qrCopyBtn: "Копировать",
+          qrSendBtn: "Отправить",
+          qrSaveBtn: "Сохранить",
+          qrOffline: "Библиотека QR недоступна офлайн.",
+          qrTooLarge: "Слишком большой объём данных для QR-кода. Используйте ссылку-обёртку или кнопку копирования.",
+          qrTooLargeWarn: "Длина данных ({len} симв.) превышает стандартную ёмкость QR-кода.",
+          qrRenderError: "Не удалось создать QR-код для этих данных.",
+          copied: "Скопировано!",
+          copyFailed: "Ошибка копирования",
+          saved: "Сохранено!",
+          sent: "Отправлено!",
+          shareFailed: "Ошибка отправки",
+          shareDeepTitle: "QR-код диплинка Hiddify",
+          shareWrapperTitle: "QR-код ссылки Hiddify",
+          typeEmpty: "Ожидание ввода",
+          typeUrl: "URL подписки",
+          typeHiddify: "Диплинк Hiddify",
+          typeProxyOne: "Прокси-URI",
+          typeProxyMany: "Прокси-URI ({n} строк)",
+          typeJson: "Конфиг Sing-box / JSON",
+          typeJsonInvalid: "Конфиг JSON (проверьте синтаксис)",
+          typeYaml: "Конфиг Clash / YAML",
+          typeText: "Текст конфигурации",
+          typeImportedUri: "Импортированный URI",
+          typeProfile: "Профиль",
+          defaultProfileName: "Профиль Hiddify VPN",
+          landingSubtitleDefault: "Приложение Hiddify открывается автоматически. Если этого не произошло, нажмите ниже.",
+          landingSubtitleAndroid: "Нажмите на кнопку питания ниже, чтобы импортировать профиль в Hiddify на Android.",
+          openInHiddifyBtn: "Открыть в приложении Hiddify",
+          copyConfigBtn: "Копировать ссылку подписки / конфига",
+          androidInAppNotice:
+            "Открыто во встроенном браузере? Если кнопка не запускает Hiddify, нажмите меню (<strong>&vellip;</strong>) &rarr; <strong>Открыть в Chrome</strong> (или в браузере), либо скопируйте ссылку ниже и вставьте в Hiddify (<strong>+</strong> &rarr; <strong>Добавить из буфера обмена</strong>).",
+          androidBrowserNotice:
+            "Если Hiddify не открывается при нажатии, нажмите <strong>Копировать ссылку подписки / конфига</strong> и вставьте в Hiddify (<strong>+</strong> &rarr; <strong>Добавить из буфера обмена</strong>).",
+          invalidBase64Error: "Некорректная строка Base64 конфигурации в URL.",
+          needNewLink: "Нужна новая ссылка?",
+          openLinkGenerator: "Открыть генератор ссылок",
+          readyBadge: "Готово",
+          toggleThemeAria: "Переключить тёмную или светлую тему"
+        }
+      };
+
       // DOM elements
       const themeToggle = document.getElementById("themeToggle");
       const themeIcon = document.getElementById("themeIcon");
+      const langSelect = document.getElementById("langSelect");
 
       const generatorView = document.getElementById("generatorView");
       const landingView = document.getElementById("landingView");
@@ -680,33 +1103,99 @@
 
       const outputSection = document.getElementById("outputSection");
       const outputModeBadge = document.getElementById("outputModeBadge");
-      const hiddifyUriBox = document.getElementById("hiddifyUriBox");
-      const intentUriBox = document.getElementById("intentUriBox");
       const wrapperUrlBox = document.getElementById("wrapperUrlBox");
-      const testHiddifyBtn = document.getElementById("testHiddifyBtn");
-      const copyHiddifyBtn = document.getElementById("copyHiddifyBtn");
-      const testIntentBtn = document.getElementById("testIntentBtn");
-      const copyIntentBtn = document.getElementById("copyIntentBtn");
       const copyWrapperBtn = document.getElementById("copyWrapperBtn");
       const previewWrapperBtn = document.getElementById("previewWrapperBtn");
       const fileProtocolNotice = document.getElementById("fileProtocolNotice");
-      const qrcodeContainer = document.getElementById("qrcodeContainer");
-      const qrModeDeepBtn = document.getElementById("qrModeDeepBtn");
-      const qrModeWrapperBtn = document.getElementById("qrModeWrapperBtn");
-      const qrWarning = document.getElementById("qrWarning");
+
+      const qrcodeDeepContainer = document.getElementById("qrcodeDeepContainer");
+      const qrcodeWrapperContainer = document.getElementById("qrcodeWrapperContainer");
+      const qrDeepWarning = document.getElementById("qrDeepWarning");
+      const qrWrapperWarning = document.getElementById("qrWrapperWarning");
+      const qrDeepCopyBtn = document.getElementById("qrDeepCopyBtn");
+      const qrDeepSendBtn = document.getElementById("qrDeepSendBtn");
+      const qrDeepSaveBtn = document.getElementById("qrDeepSaveBtn");
+      const qrWrapperCopyBtn = document.getElementById("qrWrapperCopyBtn");
+      const qrWrapperSendBtn = document.getElementById("qrWrapperSendBtn");
+      const qrWrapperSaveBtn = document.getElementById("qrWrapperSaveBtn");
 
       const landingTypeBadge = document.getElementById("landingTypeBadge");
       const landingProfileName = document.getElementById("landingProfileName");
-      const landingSubtitle = document.querySelector(".landing-subtitle");
+      const landingSubtitle = document.getElementById("landingSubtitle");
       const landingOpenHiddifyBtn = document.getElementById("landingOpenHiddifyBtn");
-      const landingIntentBtn = document.getElementById("landingIntentBtn");
+      const landingPowerLabel = document.getElementById("landingPowerLabel");
       const landingCopyBtn = document.getElementById("landingCopyBtn");
       const landingAndroidNotice = document.getElementById("landingAndroidNotice");
       const landingError = document.getElementById("landingError");
       const switchToGeneratorBtn = document.getElementById("switchToGeneratorBtn");
 
+      let currentLang = "en";
       let currentGenerated = null;
-      let currentQrMode = "deep";
+      let currentLandingState = null;
+
+      function t(key, vars) {
+        const dict = I18N[currentLang] || I18N.en;
+        let text = dict[key] !== undefined ? dict[key] : (I18N.en[key] || key);
+        if (vars) {
+          for (const [k, v] of Object.entries(vars)) {
+            text = text.replace(`{${k}}`, String(v));
+          }
+        }
+        return text;
+      }
+
+      function detectInitialLang() {
+        let saved = null;
+        try {
+          saved = localStorage.getItem("hiddify_resolver_lang");
+        } catch (_) {}
+        if (saved && I18N[saved]) return saved;
+
+        const navLang = (navigator.language || "en").toLowerCase();
+        if (navLang.startsWith("fa")) return "fa";
+        if (navLang.startsWith("tr")) return "tr";
+        if (navLang.startsWith("zh")) return "zh";
+        if (navLang.startsWith("ru")) return "ru";
+        return "en";
+      }
+
+      function applyLanguage(lang) {
+        currentLang = I18N[lang] ? lang : "en";
+        langSelect.value = currentLang;
+        document.documentElement.setAttribute("lang", currentLang);
+        document.documentElement.setAttribute("dir", currentLang === "fa" ? "rtl" : "ltr");
+        document.title = t("pageTitle");
+
+        try {
+          localStorage.setItem("hiddify_resolver_lang", currentLang);
+        } catch (_) {}
+
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          el.textContent = t(el.getAttribute("data-i18n"));
+        });
+        document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+          el.innerHTML = t(el.getAttribute("data-i18n-html"));
+        });
+
+        configInput.placeholder = t("inputPlaceholder");
+        profileNameInput.placeholder = t("profileNamePlaceholder");
+        themeToggle.setAttribute("aria-label", t("toggleThemeAria"));
+        landingOpenHiddifyBtn.setAttribute("aria-label", t("openInHiddifyBtn"));
+
+        refreshDetectedBadge();
+
+        if (currentGenerated) {
+          outputModeBadge.textContent = formatDetectedLabel(currentGenerated.detected);
+          renderBothQrCodes();
+        }
+        if (currentLandingState) {
+          renderLandingText();
+        }
+      }
+
+      langSelect.addEventListener("change", () => {
+        applyLanguage(langSelect.value);
+      });
 
       // Theme management
       function applyTheme(theme) {
@@ -808,7 +1297,6 @@
           if (isHttpUrl(inner)) {
             return { payload: inner, name: extractProfileNameFromUrl(inner) };
           }
-          // Handle hiddify://import/?url=...&name=...
           try {
             const parsed = new URL(trimmed);
             const urlParam = parsed.searchParams.get("url");
@@ -822,7 +1310,6 @@
           return { payload: inner, name: extractProfileNameFromUrl(inner) };
         }
 
-        // Handle hiddify://install-config?url=... or hiddify://install-sub?url=...
         try {
           const parsed = new URL(trimmed);
           const urlParam = parsed.searchParams.get("url");
@@ -839,42 +1326,64 @@
 
       function detectInputType(raw) {
         const trimmed = raw.trim();
-        if (!trimmed) return { type: "empty", label: "Waiting for input" };
+        if (!trimmed) return { type: "empty", lineCount: 0 };
 
         const lines = trimmed.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
 
         if (lines.length === 1 && isHttpUrl(lines[0])) {
-          return { type: "url", label: "Subscription URL" };
+          return { type: "url", lineCount: 1 };
         }
 
         if (lines.length === 1 && lines[0].toLowerCase().startsWith("hiddify://")) {
-          return { type: "hiddify-deeplink", label: "Hiddify Deep Link" };
+          return { type: "hiddify-deeplink", lineCount: 1 };
         }
 
         const hasProxyScheme = lines.some((line) =>
           PROXY_SCHEMES.some((scheme) => line.toLowerCase().startsWith(scheme))
         );
         if (hasProxyScheme) {
-          return {
-            type: "proxy",
-            label: lines.length > 1 ? `Proxy URIs (${lines.length} lines)` : "Proxy URI"
-          };
+          return { type: "proxy", lineCount: lines.length };
         }
 
         if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
           try {
             JSON.parse(trimmed);
-            return { type: "json", label: "Sing-box / JSON Config" };
+            return { type: "json", lineCount: lines.length };
           } catch (_) {
-            return { type: "json-invalid", label: "JSON Config (check syntax)" };
+            return { type: "json-invalid", lineCount: lines.length };
           }
         }
 
         if (/^(proxies|proxy-groups|rules|mixed-port|port|inbounds|outbounds)\s*:/m.test(trimmed)) {
-          return { type: "yaml", label: "Clash / YAML Config" };
+          return { type: "yaml", lineCount: lines.length };
         }
 
-        return { type: "text", label: "Raw Config Text" };
+        return { type: "text", lineCount: lines.length };
+      }
+
+      function formatDetectedLabel(info) {
+        switch (info.type) {
+          case "empty": return t("typeEmpty");
+          case "url": return t("typeUrl");
+          case "hiddify-deeplink": return t("typeHiddify");
+          case "proxy":
+            return info.lineCount > 1
+              ? t("typeProxyMany", { n: info.lineCount })
+              : t("typeProxyOne");
+          case "json": return t("typeJson");
+          case "json-invalid": return t("typeJsonInvalid");
+          case "yaml": return t("typeYaml");
+          default: return t("typeText");
+        }
+      }
+
+      function refreshDetectedBadge() {
+        const info = detectInputType(configInput.value);
+        detectedTypeBadge.textContent = formatDetectedLabel(info);
+        detectedTypeBadge.className = "badge";
+        if (info.type === "json-invalid") {
+          detectedTypeBadge.classList.add("warning");
+        }
       }
 
       function buildDeepLinks(rawInput, profileName) {
@@ -898,11 +1407,10 @@
 
         let hiddifyUri = "";
         let wrapperUrl = "";
-        let copyableConfig = trimmed;
+        const copyableConfig = trimmed;
 
         if (detected.type === "url") {
           let targetUrl = trimmed;
-          // If user supplied a profile name and the URL already had a fragment, replace it cleanly
           if (name) {
             const hashIdx = targetUrl.indexOf("#");
             if (hashIdx !== -1) {
@@ -915,9 +1423,7 @@
           params.set("url", trimmed);
           if (name) params.set("name", name);
           wrapperUrl = `${basePageUrl}?${params.toString()}`;
-          copyableConfig = trimmed;
         } else {
-          // Raw proxy URI(s), JSON, YAML, or text -> encode as UTF-8 Base64 data URI
           const b64 = utf8ToBase64(trimmed);
           const dataUri = `data:text/plain;charset=utf-8;base64,${b64}`;
           hiddifyUri = `hiddify://import/${dataUri}${hashFragment}`;
@@ -926,12 +1432,11 @@
           params.set("config", b64);
           if (name) params.set("name", name);
           wrapperUrl = `${basePageUrl}?${params.toString()}`;
-          copyableConfig = trimmed;
         }
 
         const pathAfterScheme = hiddifyUri.replace(/^hiddify:\/\//, "");
         // Strip any '#' fragment before '#Intent;' so Android browsers/WebViews
-        // do not split at the earlier '#' and corrupt the '#Intent;...;end' suffix.
+        // do not split at the earlier '#' and corrupt '#Intent;...;end'.
         const cleanIntentPath = pathAfterScheme.split("#")[0];
         const intentUri =
           `intent://${cleanIntentPath}#Intent;` +
@@ -951,7 +1456,22 @@
         };
       }
 
-      async function copyTextWithFeedback(text, buttonEl, originalLabel) {
+      function flashButtonFeedback(buttonEl, feedbackKey, isSuccess) {
+        const i18nKey = buttonEl.getAttribute("data-i18n");
+        buttonEl.textContent = t(feedbackKey);
+        if (isSuccess) {
+          buttonEl.classList.add("btn-success");
+        }
+        clearTimeout(buttonEl._feedbackTimer);
+        buttonEl._feedbackTimer = setTimeout(() => {
+          buttonEl.classList.remove("btn-success");
+          if (i18nKey) {
+            buttonEl.textContent = t(i18nKey);
+          }
+        }, 1800);
+      }
+
+      async function copyTextWithFeedback(text, buttonEl) {
         try {
           if (navigator.clipboard && window.isSecureContext) {
             await navigator.clipboard.writeText(text);
@@ -966,42 +1486,33 @@
             document.execCommand("copy");
             document.body.removeChild(tmp);
           }
-          buttonEl.textContent = "Copied!";
-          buttonEl.classList.add("btn-success");
-          setTimeout(() => {
-            buttonEl.textContent = originalLabel;
-            buttonEl.classList.remove("btn-success");
-          }, 1800);
+          flashButtonFeedback(buttonEl, "copied", true);
         } catch (err) {
-          buttonEl.textContent = "Copy failed";
-          setTimeout(() => {
-            buttonEl.textContent = originalLabel;
-          }, 1800);
+          flashButtonFeedback(buttonEl, "copyFailed", false);
         }
       }
 
-      function renderQrCode(text) {
-        qrcodeContainer.innerHTML = "";
-        qrWarning.classList.add("hidden");
-        qrWarning.textContent = "";
+      function renderSingleQrCode(container, warningEl, text) {
+        container.innerHTML = "";
+        warningEl.classList.add("hidden");
+        warningEl.textContent = "";
 
         if (typeof QRCode === "undefined") {
-          qrcodeContainer.innerHTML =
-            '<span style="color:#64748b;font-size:0.8rem;padding:12px;text-align:center;">QR library unavailable offline.</span>';
+          container.innerHTML =
+            `<span style="color:#64748b;font-size:0.8rem;padding:12px;text-align:center;">${t("qrOffline")}</span>`;
           return;
         }
 
-        // QR codes have a practical capacity limit (~2953 bytes at L level)
         if (text.length > 2600) {
-          qrcodeContainer.innerHTML =
-            '<span style="color:#64748b;font-size:0.8rem;padding:12px;text-align:center;">Payload too large for QR code. Use the Wrapper URL or Copy button instead.</span>';
-          qrWarning.textContent = `Payload length (${text.length} chars) exceeds standard QR capacity.`;
-          qrWarning.classList.remove("hidden");
+          container.innerHTML =
+            `<span style="color:#64748b;font-size:0.8rem;padding:12px;text-align:center;">${t("qrTooLarge")}</span>`;
+          warningEl.textContent = t("qrTooLargeWarn", { len: text.length });
+          warningEl.classList.remove("hidden");
           return;
         }
 
         try {
-          new QRCode(qrcodeContainer, {
+          new QRCode(container, {
             text,
             width: 168,
             height: 168,
@@ -1010,40 +1521,129 @@
             correctLevel: QRCode.CorrectLevel.M
           });
         } catch (e) {
-          qrcodeContainer.innerHTML =
-            '<span style="color:#64748b;font-size:0.8rem;padding:12px;text-align:center;">Unable to render QR for this payload.</span>';
+          container.innerHTML =
+            `<span style="color:#64748b;font-size:0.8rem;padding:12px;text-align:center;">${t("qrRenderError")}</span>`;
         }
       }
 
-      function updateQrMode(mode) {
+      function renderBothQrCodes() {
         if (!currentGenerated) return;
-        currentQrMode = mode;
-        if (mode === "deep") {
-          qrModeDeepBtn.classList.replace("btn-secondary", "btn-primary");
-          qrModeWrapperBtn.classList.replace("btn-primary", "btn-secondary");
-          renderQrCode(currentGenerated.hiddifyUri);
-        } else {
-          qrModeWrapperBtn.classList.replace("btn-secondary", "btn-primary");
-          qrModeDeepBtn.classList.replace("btn-primary", "btn-secondary");
-          renderQrCode(currentGenerated.wrapperUrl);
+        renderSingleQrCode(qrcodeDeepContainer, qrDeepWarning, currentGenerated.hiddifyUri);
+        renderSingleQrCode(qrcodeWrapperContainer, qrWrapperWarning, currentGenerated.wrapperUrl);
+      }
+
+      // Export a crisp padded PNG Blob from a rendered QR container
+      function getQrPngBlob(container) {
+        return new Promise((resolve) => {
+          const srcCanvas = container.querySelector("canvas");
+          const srcImg = container.querySelector("img");
+          const padding = 16;
+
+          const drawWithQuietZone = (source, width, height) => {
+            const out = document.createElement("canvas");
+            out.width = width + padding * 2;
+            out.height = height + padding * 2;
+            const ctx = out.getContext("2d");
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, out.width, out.height);
+            ctx.drawImage(source, padding, padding, width, height);
+            out.toBlob((blob) => resolve(blob), "image/png");
+          };
+
+          if (srcCanvas && srcCanvas.width > 0) {
+            drawWithQuietZone(srcCanvas, srcCanvas.width, srcCanvas.height);
+            return;
+          }
+
+          if (srcImg && srcImg.src) {
+            const img = new Image();
+            img.onload = () => {
+              drawWithQuietZone(img, img.naturalWidth || 168, img.naturalHeight || 168);
+            };
+            img.onerror = () => resolve(null);
+            img.src = srcImg.src;
+            return;
+          }
+
+          resolve(null);
+        });
+      }
+
+      async function handleQrCopy(container, text, buttonEl) {
+        if (!text) return;
+        const blob = await getQrPngBlob(container);
+        if (blob && navigator.clipboard && window.ClipboardItem && window.isSecureContext) {
+          try {
+            await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+            flashButtonFeedback(buttonEl, "copied", true);
+            return;
+          } catch (_) {
+            // Fall back to copying the underlying text/URL if image clipboard is blocked
+          }
         }
+        await copyTextWithFeedback(text, buttonEl);
+      }
+
+      async function handleQrSave(container, filename, buttonEl) {
+        const blob = await getQrPngBlob(container);
+        if (!blob) {
+          flashButtonFeedback(buttonEl, "copyFailed", false);
+          return;
+        }
+        const blobUrl = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = blobUrl;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 2000);
+        flashButtonFeedback(buttonEl, "saved", true);
+      }
+
+      async function handleQrSend(container, filename, titleKey, text, isHttpLink, buttonEl) {
+        if (!text) return;
+        const title = t(titleKey);
+        const blob = await getQrPngBlob(container);
+
+        if (navigator.share) {
+          if (blob) {
+            try {
+              const file = new File([blob], filename, { type: "image/png" });
+              if (!navigator.canShare || navigator.canShare({ files: [file] })) {
+                await navigator.share({ files: [file], title, text });
+                flashButtonFeedback(buttonEl, "sent", true);
+                return;
+              }
+            } catch (err) {
+              if (err && err.name === "AbortError") return;
+            }
+          }
+
+          try {
+            const shareData = isHttpLink ? { title, url: text } : { title, text };
+            await navigator.share(shareData);
+            flashButtonFeedback(buttonEl, "sent", true);
+            return;
+          } catch (err) {
+            if (err && err.name === "AbortError") return;
+          }
+        }
+
+        // Fallback when Web Share API is unavailable (e.g., desktop browsers)
+        await handleQrCopy(container, text, buttonEl);
       }
 
       // Generator interactions
       configInput.addEventListener("input", () => {
-        const info = detectInputType(configInput.value);
-        detectedTypeBadge.textContent = info.label;
-        detectedTypeBadge.className = "badge";
-        if (info.type === "json-invalid") {
-          detectedTypeBadge.classList.add("warning");
-        }
+        refreshDetectedBadge();
         inputError.classList.remove("visible");
       });
 
       generateBtn.addEventListener("click", () => {
         const raw = configInput.value.trim();
         if (!raw) {
-          inputError.textContent = "Please enter a subscription URL, proxy URI, or configuration text.";
+          inputError.textContent = t("emptyInputError");
           inputError.classList.add("visible");
           return;
         }
@@ -1051,13 +1651,8 @@
         inputError.classList.remove("visible");
         currentGenerated = buildDeepLinks(raw, profileNameInput.value);
 
-        outputModeBadge.textContent = currentGenerated.detected.label;
-        hiddifyUriBox.textContent = currentGenerated.hiddifyUri;
-        intentUriBox.textContent = currentGenerated.intentUri;
+        outputModeBadge.textContent = formatDetectedLabel(currentGenerated.detected);
         wrapperUrlBox.textContent = currentGenerated.wrapperUrl;
-
-        testHiddifyBtn.href = currentGenerated.hiddifyUri;
-        testIntentBtn.href = currentGenerated.intentUri;
         previewWrapperBtn.href = currentGenerated.wrapperUrl;
 
         if (window.location.protocol === "file:") {
@@ -1067,44 +1662,79 @@
         }
 
         outputSection.classList.add("visible");
-        updateQrMode("deep");
+        renderBothQrCodes();
         outputSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
       });
 
       clearBtn.addEventListener("click", () => {
         configInput.value = "";
         profileNameInput.value = "";
-        detectedTypeBadge.textContent = "Waiting for input";
-        detectedTypeBadge.className = "badge";
+        refreshDetectedBadge();
         inputError.classList.remove("visible");
         outputSection.classList.remove("visible");
         currentGenerated = null;
       });
 
-      copyHiddifyBtn.addEventListener("click", () => {
-        if (currentGenerated) {
-          copyTextWithFeedback(currentGenerated.hiddifyUri, copyHiddifyBtn, "Copy hiddify:// Link");
-        }
-      });
-
-      copyIntentBtn.addEventListener("click", () => {
-        if (currentGenerated) {
-          copyTextWithFeedback(currentGenerated.intentUri, copyIntentBtn, "Copy Intent URI");
-        }
-      });
-
       copyWrapperBtn.addEventListener("click", () => {
         if (currentGenerated) {
-          copyTextWithFeedback(currentGenerated.wrapperUrl, copyWrapperBtn, "Copy Shareable URL");
+          copyTextWithFeedback(currentGenerated.wrapperUrl, copyWrapperBtn);
         }
       });
 
-      qrModeDeepBtn.addEventListener("click", () => updateQrMode("deep"));
-      qrModeWrapperBtn.addEventListener("click", () => updateQrMode("wrapper"));
+      qrDeepCopyBtn.addEventListener("click", () => {
+        if (currentGenerated) {
+          handleQrCopy(qrcodeDeepContainer, currentGenerated.hiddifyUri, qrDeepCopyBtn);
+        }
+      });
+
+      qrDeepSaveBtn.addEventListener("click", () => {
+        if (currentGenerated) {
+          handleQrSave(qrcodeDeepContainer, "hiddify-deep-link-qr.png", qrDeepSaveBtn);
+        }
+      });
+
+      qrDeepSendBtn.addEventListener("click", () => {
+        if (currentGenerated) {
+          handleQrSend(
+            qrcodeDeepContainer,
+            "hiddify-deep-link-qr.png",
+            "shareDeepTitle",
+            currentGenerated.hiddifyUri,
+            false,
+            qrDeepSendBtn
+          );
+        }
+      });
+
+      qrWrapperCopyBtn.addEventListener("click", () => {
+        if (currentGenerated) {
+          handleQrCopy(qrcodeWrapperContainer, currentGenerated.wrapperUrl, qrWrapperCopyBtn);
+        }
+      });
+
+      qrWrapperSaveBtn.addEventListener("click", () => {
+        if (currentGenerated) {
+          handleQrSave(qrcodeWrapperContainer, "hiddify-wrapper-url-qr.png", qrWrapperSaveBtn);
+        }
+      });
+
+      qrWrapperSendBtn.addEventListener("click", () => {
+        if (currentGenerated) {
+          handleQrSend(
+            qrcodeWrapperContainer,
+            "hiddify-wrapper-url-qr.png",
+            "shareWrapperTitle",
+            currentGenerated.wrapperUrl,
+            true,
+            qrWrapperSendBtn
+          );
+        }
+      });
 
       switchToGeneratorBtn.addEventListener("click", () => {
         landingView.classList.remove("visible");
         generatorView.classList.remove("hidden");
+        currentLandingState = null;
         if (window.history && window.history.replaceState) {
           window.history.replaceState({}, document.title, window.location.pathname);
         }
@@ -1117,6 +1747,34 @@
       function isInAppWebView() {
         const ua = navigator.userAgent || "";
         return /Telegram|WhatsApp|Instagram|FBAN|FBAV|Line\/|MicroMessenger|; wv\)/i.test(ua);
+      }
+
+      function renderLandingText() {
+        if (!currentLandingState) return;
+        if (currentLandingState.hasError) {
+          landingError.textContent = t("invalidBase64Error");
+          landingError.classList.add("visible");
+          return;
+        }
+
+        const { typeKey, detected, displayProfileName, isAndroid, inApp } = currentLandingState;
+        if (detected) {
+          landingTypeBadge.textContent = formatDetectedLabel(detected);
+        } else {
+          landingTypeBadge.textContent = t(typeKey || "typeProfile");
+        }
+        landingProfileName.textContent = displayProfileName || t("defaultProfileName");
+
+        if (isAndroid) {
+          landingSubtitle.textContent = t("landingSubtitleAndroid");
+          landingAndroidNotice.innerHTML = inApp
+            ? t("androidInAppNotice")
+            : t("androidBrowserNotice");
+          landingAndroidNotice.classList.remove("hidden");
+        } else {
+          landingSubtitle.textContent = t("landingSubtitleDefault");
+          landingAndroidNotice.classList.add("hidden");
+        }
       }
 
       // Auto-Redirect / Landing Mode initialization
@@ -1134,18 +1792,19 @@
         landingView.classList.add("visible");
 
         let resolvedPayload = "";
-        let resolvedTypeLabel = "Profile";
+        let typeKey = "typeProfile";
+        let detected = null;
 
         if (rawUrlParam) {
           resolvedPayload = rawUrlParam.trim();
-          resolvedTypeLabel = isHttpUrl(resolvedPayload) ? "Subscription URL" : "Imported URI";
+          typeKey = isHttpUrl(resolvedPayload) ? "typeUrl" : "typeImportedUri";
         } else if (rawConfigParam) {
           try {
             resolvedPayload = base64ToUtf8(rawConfigParam.trim());
-            resolvedTypeLabel = detectInputType(resolvedPayload).label;
+            detected = detectInputType(resolvedPayload);
           } catch (err) {
-            landingError.textContent = "Invalid Base64 configuration payload in URL.";
-            landingError.classList.add("visible");
+            currentLandingState = { hasError: true };
+            renderLandingText();
             return true;
           }
         }
@@ -1154,56 +1813,41 @@
         const displayProfileName =
           nameParam.trim() ||
           extractProfileNameFromUrl(resolvedPayload) ||
-          "Hiddify VPN Profile";
-
-        landingTypeBadge.textContent = resolvedTypeLabel;
-        landingProfileName.textContent = displayProfileName;
+          "";
 
         const isAndroid = isAndroidDevice();
         const inApp = isInAppWebView();
 
-        if (isAndroid) {
-          // On Android, Chrome and WebViews block non-gesture custom-scheme redirects
-          // and show ERR_UNKNOWN_URL_SCHEME on window.location = "hiddify://...".
-          // Use the clean intent:// URI as the primary user-tapped action.
-          landingSubtitle.textContent =
-            "Tap below to import this profile into Hiddify on Android.";
-          landingOpenHiddifyBtn.href = links.intentUri;
-          landingOpenHiddifyBtn.textContent = "Open in Hiddify App";
-          landingIntentBtn.href = links.hiddifyUri;
-          landingIntentBtn.textContent = "Try Direct Deep Link (hiddify://)";
-          landingIntentBtn.classList.remove("hidden");
+        currentLandingState = {
+          hasError: false,
+          typeKey,
+          detected,
+          displayProfileName,
+          isAndroid,
+          inApp
+        };
+        renderLandingText();
 
-          landingAndroidNotice.innerHTML = inApp
-            ? "Opened in an in-app browser? If the button doesn't launch Hiddify, tap the menu (<strong>&vellip;</strong>) &rarr; <strong>Open in Chrome</strong> (or your browser), or copy the link below and paste it inside Hiddify (<strong>+</strong> &rarr; <strong>Add from Clipboard</strong>)."
-            : "If Hiddify does not open automatically when tapped, try <strong>Try Direct Deep Link</strong> or tap <strong>Copy Subscription / Config Link</strong> and paste it inside Hiddify (<strong>+</strong> &rarr; <strong>Add from Clipboard</strong>).";
-          landingAndroidNotice.classList.remove("hidden");
+        if (isAndroid) {
+          landingOpenHiddifyBtn.href = links.intentUri;
         } else {
           landingOpenHiddifyBtn.href = links.hiddifyUri;
-          landingOpenHiddifyBtn.textContent = "Open in Hiddify App";
-          landingIntentBtn.href = links.intentUri;
-          landingIntentBtn.classList.add("hidden");
-          landingAndroidNotice.classList.add("hidden");
-
-          // On iOS / Desktop, attempt direct custom-scheme open after a brief moment
           setTimeout(() => {
             window.location.href = links.hiddifyUri;
           }, 150);
         }
 
         landingCopyBtn.onclick = () => {
-          copyTextWithFeedback(
-            links.copyableConfig,
-            landingCopyBtn,
-            "Copy Subscription / Config Link"
-          );
+          copyTextWithFeedback(links.copyableConfig, landingCopyBtn);
         };
 
         return true;
       }
 
       window.addEventListener("DOMContentLoaded", () => {
+        applyLanguage(detectInitialLang());
         initLandingModeIfParamsPresent();
+        renderLandingText();
       });
     })();
   </script>
